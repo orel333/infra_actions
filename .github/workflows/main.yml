@@ -9,5 +9,6 @@ jobs:
     runs-on: ubuntu-latest
   
     steps:
+    - name: Super Validation Step
       run: echo How fascinating!
       run: echo Now learn further
