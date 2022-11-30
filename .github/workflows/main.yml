@@ -10,3 +10,4 @@ jobs:
   
     steps:
       run: echo How fascinating!
+      run: echo Now learn further
