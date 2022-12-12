@@ -14,11 +14,15 @@ import os
 
 from dotenv import load_dotenv
 
-load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+DOTENV_DIR = os.path.join(os.path.dirname(BASE_DIR))
+
+DOTENV_PATH = os.path.join(DOTENV_DIR, '.env')
+
+load_dotenv(DOTENV_PATH)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
