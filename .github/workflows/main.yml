@@ -68,6 +68,8 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
+          export MYHOST=${{ secrets.HOST }}
+          export DJANGO_KEY=${{ secrets.DJANGO_KEY }}
           # Выполняет pull образа с DockerHub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
           sudo docker stop $(sudo docker ps -a -q)
