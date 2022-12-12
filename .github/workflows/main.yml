@@ -72,8 +72,8 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
           sudo docker stop $(sudo docker ps -a -q)
           sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-          sudo docker exec $(sudo docker ps -a -q) bash
-          export MYHOST=${{ secrets.HOST }}
+          sudo docker exec $(sudo docker ps -a -q)
+          ls
 
   send_message:
     runs-on: ubuntu-latest
