@@ -68,12 +68,12 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
-          # Выполняет pull образа с DockerHub
+          # удаляет старый контейнер и старый образ
           sudo docker stop $(sudo docker ps -a -q)
-          # удаляет старый образ
           sudo docker image rm $(sudo docker image ls -q)
+          # Выполняет pull образа с DockerHub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-          sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }} -e MYHOST=${{ secrets.HOST }} DJANGO_KEY=${{ secrets.DJANGO_KEY }}
+          sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }} -e MYHOST=${{ secrets.HOST }}
 
   send_message:
     runs-on: ubuntu-latest
