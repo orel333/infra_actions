@@ -73,7 +73,9 @@ jobs:
           sudo docker image rm $(sudo docker image ls -q)
           # Выполняет pull образа с DockerHub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-          sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }} -e MYHOST=${{ secrets.HOST }}
+          sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
+          sudo docker exec $(sudo docker ps -a -q) echo MYHOST=${{ secrets.HOST }} > .env
+          sudo docker exec $(sudo docker ps -a -q) echo DJANGO_KEY=${{ secrets.DJANGO_KEY }} >> .env
 
   send_message:
     runs-on: ubuntu-latest
