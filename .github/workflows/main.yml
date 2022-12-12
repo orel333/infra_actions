@@ -71,8 +71,8 @@ jobs:
           # Выполняет pull образа с DockerHub
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
           sudo docker stop $(sudo docker ps -a -q)
-          sudo docker run --rm -d -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-          sudo docker exec $(sudo docker ps -a -q) bash
+          sudo docker run --rm -d -p -it 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
+          sudo docker exec $(sudo docker ps -a -q) sh
           export MYHOST=${{ secrets.HOST }}
           export DJANGO_KEY=${{ secrets.DJANGO_KEY }}
 
