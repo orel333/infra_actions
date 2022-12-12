@@ -72,10 +72,8 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
           sudo docker stop $(sudo docker ps -a -q)
           sudo docker run --rm -d -it -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-          sudo docker exec -it $(sudo docker ps -a -q) bash
-          export MYHOST=${{ secrets.HOST }}
-          export DJANGO_KEY=${{ secrets.DJANGO_KEY }}
-          exit
+          sudo docker exec $(sudo docker ps -a -q) export MYHOST=${{ secrets.HOST }}
+          sudo docker exec $(sudo docker ps -a -q) export MYHOST=${{ secrets.DJANGO_KEY }}
 
   send_message:
     runs-on: ubuntu-latest
